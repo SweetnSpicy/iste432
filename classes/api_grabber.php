@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
+require 'game_abbrv.php';
 
 use GuzzleHttp\Client;
 
@@ -20,18 +21,24 @@ class ApiGrabber {
         //echo $response->getStatusCode();
         //echo $response->getBody();
         $xml = new SimpleXMLElement($response->getBody());
-        //print_r($xml);
+        $games = array();
         foreach($xml->{'item'} as $item) {
-            print_r('ONE ITEM: ');
-            print_r((string) $item->attributes()->{'id'});
+            $id = (string) $item->attributes()->{'id'};
+            $name = (string) $item->{'name'}->attributes()->{'value'};
+            $yrpublished = "Unknown";
+            if (count($item) > 1) {
+                $yrpublished = (string) $item->{'yearpublished'}->attributes()->{'value'};
+            }
+            $games[] = new GameAbbrv($id, $name, $yrpublished);
         }
+        print_r($games);
     }
 
     public function getGameByID($id) {
         $response = $this->client->request('GET', 'thing?id='.$id);
         //echo $response->getStatusCode();
         //echo $response->getBody();
-        $xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
+        //$xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
         //print_r($xml);
     }
 

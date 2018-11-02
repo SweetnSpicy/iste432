@@ -19,10 +19,11 @@ class ApiGrabber {
         $response = $this->client->request('GET', 'search?query='.$searchinput);
         //echo $response->getStatusCode();
         //echo $response->getBody();
-        $xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
+        $xml = new SimpleXMLElement($response->getBody());
         //print_r($xml);
-        foreach($xml->item as $item) {
-            echo $item->name;
+        foreach($xml->{'item'} as $item) {
+            print_r('ONE ITEM: ');
+            print_r((string) $item->attributes()->{'id'});
         }
     }
 

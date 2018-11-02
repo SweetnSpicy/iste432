@@ -21,7 +21,9 @@ class ApiGrabber {
         //echo $response->getBody();
         $xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
         //print_r($xml);
-        
+        foreach($xml->item as $item) {
+            echo $item->name;
+        }
     }
 
     public function getGameByID($id) {

@@ -17,14 +17,19 @@ class ApiGrabber {
     
     public function searchBoardGames($searchinput) {
         $response = $this->client->request('GET', 'search?query='.$searchinput);
-        echo $response->getStatusCode();
-        echo $response->getBody();
+        //echo $response->getStatusCode();
+        //echo $response->getBody();
+        $xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
+        //print_r($xml);
+        
     }
 
     public function getGameByID($id) {
         $response = $this->client->request('GET', 'thing?id='.$id);
-        echo $response->getStatusCode();
-        echo $response->getBody();
+        //echo $response->getStatusCode();
+        //echo $response->getBody();
+        $xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
+        //print_r($xml);
     }
 
 }

@@ -21,9 +21,15 @@ class ApiGrabber {
         echo $response->getBody();
     }
 
+    public function getGameByID($id) {
+        $response = $this->client->request('GET', 'thing?id='.$id);
+        echo $response->getStatusCode();
+        echo $response->getBody();
+    }
+
 }
 
 $c = new ApiGrabber();
 $c->searchBoardGames("apples");
-
+$c->getGameByID("131357");
 ?>

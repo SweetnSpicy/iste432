@@ -63,7 +63,4 @@ class ApiGrabber {
 
 }
 
-$c = new ApiGrabber();
-print_r($c->searchBoardGames("apples")[0]->prettyPrint());
-print_r($c->getGameByID("131357")->prettyPrint());
 ?>

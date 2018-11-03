@@ -2,6 +2,7 @@
 
 require '../vendor/autoload.php';
 require 'game_abbrv.php';
+require 'game.php';
 
 use GuzzleHttp\Client;
 
@@ -38,13 +39,31 @@ class ApiGrabber {
         $response = $this->client->request('GET', 'thing?id='.$id);
         //echo $response->getStatusCode();
         //echo $response->getBody();
-        //$xml=simplexml_load_string($response->getBody()) or die("Error: Cannot create object");
-        //print_r($xml);
+        $xml = new SimpleXMLElement($response->getBody());
+        $game = null;
+        foreach($xml->{'item'} as $item) {
+            $name = "";
+            $primary = $item->xpath('//name[@type="primary"]');
+            if ($primary){
+                $name = (string) $primary[0]->attributes()->{'value'};
+            }
+            $image = (string) $item->{'image'};
+            $description = (string) $item->{'description'};
+            $yearPublished = (string) $item->{'yearpublished'}->attributes()->{'value'};
+            $minPlayers = (string) $item->{'minplayers'}->attributes()->{'value'};
+            $maxPlayers = (string) $item->{'maxplayers'}->attributes()->{'value'};
+            $avgPlaytime = (string) $item->{'playingtime'}->attributes()->{'value'};;
+            $minPlaytime = (string) $item->{'minplaytime'}->attributes()->{'value'};
+            $maxPlaytime = (string) $item->{'maxplayers'}->attributes()->{'value'};
+            $minAge = (string) $item->{'minage'}->attributes()->{'value'};
+            $game = new Game($name, $image, $description, $yearPublished, $minPlayers, $maxPlayers, $avgPlaytime, $minPlaytime, $maxPlaytime, $minAge);
+        }
+        print_r($game);
     }
 
 }
 
 $c = new ApiGrabber();
-$c->searchBoardGames("apples");
+//$c->searchBoardGames("apples");
 $c->getGameByID("131357");
 ?>

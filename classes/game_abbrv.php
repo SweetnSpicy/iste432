@@ -14,19 +14,19 @@ class GameAbbrv {
     }
 
     public function getID() {
-        return $id;
+        return $this->id;
     }
 
     public function getName() {
-        return $name;
+        return $this->name;
     }
 
     public function getYrPublished() {
-        return $yrpublished;
+        return $this->yrpublished;
     }
 
     public function prettyPrint() {
-        return "ID: " . $id . "Name: " . $name . "Year Published: " . $yrpublished . "</br>";
+        return "ID: " . $this->id . "Name: " . $this->name . "Year Published: " . $this->yrpublished . "</br>";
     }
 
 }

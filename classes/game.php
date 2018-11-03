@@ -41,6 +41,17 @@ class Game {
         $this->boardGamePublishers = null;
     }
 
+    public function prettyPrint() {
+        return "Name: ".$this->name."</br>"."Image: ".$this->image."</br>"
+            ."Desc: ".$this->description."</br>"
+            ."YRPub: ".$this->yearPublished."</br>"
+            ."MinPlayers: ".$this->minPlayers."</br>"
+            ."MaxPlayers: ".$this->maxPlayers."</br>"
+            ."AvgPlaytime: ".$this->avgPlaytime."</br>"
+            ."MinPlaytime: ".$this->minPlaytime."</br>"
+            ."MinAge: ".$this->minPlayers."</br>";
+    }
+
 }
 
 ?>

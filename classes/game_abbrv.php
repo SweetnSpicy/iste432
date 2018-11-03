@@ -26,7 +26,7 @@ class GameAbbrv {
     }
 
     public function prettyPrint() {
-        return "ID: " . $this->id . "Name: " . $this->name . "Year Published: " . $this->yrpublished . "</br>";
+        return "ID: " . $this->id . " Name: " . $this->name . " Year Published: " . $this->yrpublished . "</br>";
     }
 
 }

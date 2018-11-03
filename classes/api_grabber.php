@@ -32,7 +32,7 @@ class ApiGrabber {
             }
             $games[] = new GameAbbrv($id, $name, $yrpublished);
         }
-        print_r($games);
+        return $games;
     }
 
     public function getGameByID($id) {
@@ -58,12 +58,12 @@ class ApiGrabber {
             $minAge = (string) $item->{'minage'}->attributes()->{'value'};
             $game = new Game($name, $image, $description, $yearPublished, $minPlayers, $maxPlayers, $avgPlaytime, $minPlaytime, $maxPlaytime, $minAge);
         }
-        print_r($game);
+        return $game;
     }
 
 }
 
 $c = new ApiGrabber();
-//$c->searchBoardGames("apples");
-$c->getGameByID("131357");
+print_r($c->searchBoardGames("apples")[0]->prettyPrint());
+print_r($c->getGameByID("131357")->prettyPrint());
 ?>

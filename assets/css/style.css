@@ -1,0 +1,184 @@
+html, body {
+  background-color: #CFCFCF;
+  height: 100%;
+}
+h1,h2,h3,h4,h5 {
+  font-family: arial;
+
+}
+
+#topNavBtn{
+  float: right;
+  margin-right: 5px;
+
+}
+
+/* navigation and logo (in php file)*/
+#mainNav {
+  background-color: #3B5998;
+}
+
+#mainNavUl {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+#mainNavUl > li {
+   display: inline-block;
+    position: relative;
+    padding: 5px;
+    color: white;
+}
+#mainNavUl > a > li {
+   display: inline-block;
+    position: relative;
+    padding: 5px;
+    color: white;
+}
+#mainNavUl > li > a {
+   display: inline-block;
+    position: relative;
+    padding: 5px;
+    color: white;
+}
+
+#logoRow {
+  background-color: #0E6AA8;
+  height: 300px;
+}
+#logo {
+  width: 100%;
+}
+
+/* home page navs */
+#homeNav {
+  /*display: -webkit-inline-box;*/
+  background-color: #CFCFCF;
+  border-radius: 10px;
+}
+#homeNav > li  {
+  padding: 10px;
+}
+
+/* Container (in php file)*/
+#mainContainer {
+  background-color: white;
+  /*height: 100%;*/
+  margin-top:-120px;
+  min-height: 1500px;
+  border-radius: 10px;
+}
+@media only screen and (min-width: 1800px) {
+  #mainContainer {
+    margin-top: -80px;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  #mainContainer {
+    margin-top: -150px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+    #mainContainer {
+      margin-top: -100px;
+    }
+    #logoRow {
+       height: 200px;
+    }
+    #logo {
+      height: 100px;
+      width: 100%%;
+    }
+}
+
+#footerCol {
+  text-align: center;
+}
+
+/* Login */
+#login-row {
+  padding-top: 5%;
+}
+#login-box {
+  background-color: lightgrey;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+/*Driver Shedule */
+#driverScheduleContainer {
+  background-color: white;
+  height: 100%;
+  margin-top:-150px;
+  min-height: 2000px;
+  border-radius: 10px;
+}
+#calendarNew {
+  padding: 25px 25px 25px 25px;
+}
+.cld-main{
+  /*width: 660px;*/
+  width: 100%;
+}
+.cld-day{
+  display: block;
+  float: left;
+  position: relative;
+  margin: 0;
+  padding: 5px;
+  height: 250px;
+  border: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+#driverAM, #driverPM, #backupAM, #backupPM {
+  width: 100%;
+  height: 15%;
+}
+
+#driverShifts > label {
+  font-size: .8em;
+}
+
+/* Driver Availibilty */
+
+#driverAvailibilityContainer {
+  background-color: white;
+  height: 100%;
+  margin-top:-150px;
+  min-height: 1800px;
+  border-radius: 10px;
+}
+#availibilityCheckBox {
+  display: table-caption;
+}
+
+#numDaysSelect {
+  width: 50px;
+  margin-left: 30%;
+}
+
+/* Driver Table */
+
+th {
+  font-size: 1.2em;
+}
+ #addNewDriverBtn {
+   background-color: #0E6AA8;
+ }
+
+ .table-wrapper-scroll-y {
+  display: block;
+  max-height: 300px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+ /* Congregation Contacts Table */
+ #addNewCongregtationContactBtn {
+   background-color: #0E6AA8;
+ }
+ /* Congregations Table */
+ #addNewCongregtationBtn {
+   background-color: #0E6AA8;
+ }

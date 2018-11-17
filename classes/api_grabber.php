@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 
 /**
  * Class ApiGrabber
- * Is the class that opens a connection to the API, grabs data, and loads it into model classes
+ * Is the class that opens a connection to the API, grabs data as xml, and loads it into model classes
  * API docs: https://boardgamegeek.com/wiki/page/BGG_XML_API2
  * It uses Guzzle to connect to the API and make calls: http://docs.guzzlephp.org/en/stable/
  */

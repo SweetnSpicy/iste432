@@ -25,7 +25,7 @@ class DB{
                   role character varying(10) NOT NULL
               )',
               'CREATE TABLE IF NOT EXISTS Ratings (
-                  gameId INTEGER PRIMARY KEY,
+                  gameId INTEGER,
                   title VARCHAR (100) NOT NULL,
                   rating DOUBLE PRECISION,
                   review TEXT

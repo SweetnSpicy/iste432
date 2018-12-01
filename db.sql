@@ -4,11 +4,11 @@
 
 DROP DATABASE IF EXISTS boardgame;
 CREATE DATABASE boardgame;
-USE boardgame;
+\c boardgame;
 
 
-DROP TABLE IF EXISTS User;
-CREATE TABLE User(
+DROP TABLE IF EXISTS boardgame_user;
+CREATE TABLE boardgame_user(
 	username VARCHAR(15) NOT NULL,
 	password VARCHAR(100) NOT NULL,
 	PRIMARY KEY(username)
@@ -20,7 +20,7 @@ CREATE TABLE Ratings_User(
 	gameId INT,
 	username VARCHAR(15) NOT NULL,
 	PRIMARY KEY(gameId),
-	FOREIGN  KEY (username) REFERENCES User (username),
+	FOREIGN  KEY (username) REFERENCES boardgame_user (username)
 );
 
 DROP TABLE IF EXISTS Ratings;
@@ -28,7 +28,7 @@ CREATE TABLE Ratings(
 	gameId INT NOT NULL,
 	title VARCHAR(100),
 	rating INT,
-	review TEXT(500),
+	review TEXT,
 	PRIMARY KEY (gameId)
 );
 

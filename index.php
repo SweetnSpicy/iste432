@@ -6,7 +6,7 @@ include "assets/inc/nav.php";
 include "assets/inc/container.php";
 
 if(!isset($_SESSION['role'])){
-    header("Location: Login.php");
+    header("Location: login.php");
 }
 
 ?>

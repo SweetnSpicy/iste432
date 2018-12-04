@@ -7,8 +7,8 @@ CREATE DATABASE boardgame;
 \c boardgame;
 
 
-DROP TABLE IF EXISTS boardgame_user;
-CREATE TABLE boardgame_user(
+DROP TABLE IF EXISTS BG_User;
+CREATE TABLE BG_User(
 	username VARCHAR(15) NOT NULL,
 	password VARCHAR(100) NOT NULL,
 	PRIMARY KEY(username)
@@ -36,8 +36,7 @@ DROP TABLE IF EXISTS Library;
 CREATE TABLE Library(
 	username VARCHAR(15) NOT NULL,
 	gameId INT NOT NULL,
-	PRIMARY KEY(username),
-	FOREIGN  KEY (gameId) REFERENCES thing(gameId)
+	PRIMARY KEY(username)
 );
 
 

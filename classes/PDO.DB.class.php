@@ -158,6 +158,31 @@ class DB{
     }
     /////////////UPDATES////////////////
     /////////////DELETES////////////////
+    function deleteUser($usr){
+        $queryStr = "DELETE FROM BG_User WHERE username = ?";
+        $numRows = 0;
+        if($stmt = $this->db->prepare($queryStr)){
+        $stmt->bind_param("s", $usr);  
+        $stmt->execute();
+        $stmt->store_result();
+        $numRows = $stmt->affected_rows;
+        }
+        return $numRows;
+    }
+
+    function deleteLazy($sql){
+        try{
+            //$stmt = $this->db->prepare($sql);
+            $numRows = 0;
+            $stmt->execute($sql);
+            $stmt->store_result();
+            $numRows = $stmt->affected_rows;
+            return $numRows;
+        } catch(PDOException $e){
+            echo $e->getMessage();
+            die("No delete happened");
+        }
+    }
 
 }
 ?>

@@ -36,14 +36,14 @@ require_once('DB.class.php');
 		if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password'])){
 
 
-		    $results = $db->login($_POST['email']);
+		    $results = $db->login($_POST['email'], $_POST['password']);
 
 
 
 		    if ($_POST['email'] == $results->email &&
 		    $_POST['password'] == $results->password) { #password_verify($_POST['password'], $usr->VCHPASSWORD) swap this in for hashing
 		        $_SESSION['valid'] = true;
-		        $_SESSION['role'] = $results->role;
+		        $_SESSION['role'] = 'user';
 		        echo 'You have logged in.';
 		        if($results->role == 'admin'){
 		            header("Location: admin.php");

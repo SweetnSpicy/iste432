@@ -1,6 +1,6 @@
 <?php
 
-//require '../vendor/autoload.php'; //Got rid of for ApiGrabberTest
+require __DIR__.'/../vendor/autoload.php'; //Got rid of for ApiGrabberTest
 require 'game_abbrv.php';
 require 'game.php';
 

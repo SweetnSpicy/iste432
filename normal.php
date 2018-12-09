@@ -1,16 +1,16 @@
 <?php
-require_once('DB.class.php');
+require_once('DBnormal.class.php');
 session_start();
 include "assets/inc/header.php";
 include "assets/inc/nav.php";
 include "assets/inc/container.php";
 
 if(!isset($_SESSION['role'])){
-		header("Location: login.php");
+		header("Location: admin.php");
 }
 elseif(isset($_SESSION['role'])){
 	if($_SESSION['role'] != 'Admin'){
-		header("Location: login.php");
+		header("Location: normal.php");
 	}
 }
 

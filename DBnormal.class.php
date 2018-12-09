@@ -1,20 +1,37 @@
 <?php
 
-class DB{
+  class PDO_DB {
+    
     private $db;
+    // constructor method to connect to database
+    function __construct(){
+      try {
+        $this->db = new PDO("pgsql:host={$_SERVER['DB_SERVER']};dbname={$_SERVER['DB']};user={$_SERVER['DB_USER']};password={$_SERVER['DB_PASS']}");
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      }
+      catch (PDOException $e){
+        echo "<h1>Unable to connect to database</h1>";
+        echo $e;
+      }
+    } // end constructor
 
-    public function __construct(){
-        try{
-            //open conn
-            $this->db = new PDO("pgsql:host=localhost;port=5432;dbname=testdb;user=usr;password=pwd");
-            //change error reporting for development
-            //$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e){
-            die("Failed to connect");
-        }
+    //might be moved to a different class called pagestart
+    public function login($email) {
+      try {
+        $stmt = $this->db->prepare("SELECT email, password, role FROM users
+                                      WHERE email = :email");
+        $stmt->bindparam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return result;
+      }
+      catch (PDOException $e) {
+        echo "<h1>unable to log in</h1>";
+        echo $e;
+      }
     }
 
-    ////////////SELECTS/////////////////
+////////////SELECTS/////////////////
     function getLibrary($usr){
         try{
             $data = array();
@@ -47,22 +64,22 @@ class DB{
         }
     }
 
-    function getAllUsers(){
-        try{
-            include "User.class.php";
-            $data = array();
-            $stmt = $this->db->prepare("SELECT * FROM Users");
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_CLASS, "User");
-            while ($user = $stmt->fetch()){
-                $data[] = $user;
-            }
-            return $data;
-        } catch(PDOException $e){
-            echo $e->getMessage();
-            die("Not all users returned");
-        }
-    }
+    // function getAllUsers(){
+    //     try{
+    //         include "User.class.php";
+    //         $data = array();
+    //         $stmt = $this->db->prepare("SELECT * FROM Users");
+    //         $stmt->execute();
+    //         $stmt->setFetchMode(PDO::FETCH_CLASS, "User");
+    //         while ($user = $stmt->fetch()){
+    //             $data[] = $user;
+    //         }
+    //         return $data;
+    //     } catch(PDOException $e){
+    //         echo $e->getMessage();
+    //         die("Not all users returned");
+    //     }
+    // }
 
     function getRatings($gId){
         try{
@@ -115,19 +132,19 @@ class DB{
 
     /////////////INSERTS////////////////
 
-    function insertUser($usr, $pwd, $role){
-        try{
-            $stmt = $this->db->prepare("INSERT INTO Users (username, password, role) VALUES (:username, :password, :role)");
-            $stmt->execute(array(
-                "username" => $usr,
-                "role" => $role
-            ));
-            return $this->db->lastInsertId();
-        } catch(PDOException $e){
-            echo $e->getMessage();
-            die("No user inserted");
-        }
-    }
+    // function insertUser($usr, $pwd, $role){
+    //     try{
+    //         $stmt = $this->db->prepare("INSERT INTO Users (username, password, role) VALUES (:username, :password, :role)");
+    //         $stmt->execute(array(
+    //             "username" => $usr,
+    //             "role" => $role
+    //         ));
+    //         return $this->db->lastInsertId();
+    //     } catch(PDOException $e){
+    //         echo $e->getMessage();
+    //         die("No user inserted");
+    //     }
+    // }
 
     function insertRating($gId, $title, $rating, $review){
         try{
@@ -159,19 +176,18 @@ class DB{
     /////////////UPDATES////////////////
 
 
-
     /////////////DELETES////////////////
-    function deleteUser($usr){
-        $queryStr = "DELETE FROM BG_User WHERE username = ?";
-        $numRows = 0;
-        if($stmt = $this->db->prepare($queryStr)){
-        $stmt->bind_param("s", $usr);  
-        $stmt->execute();
-        $stmt->store_result();
-        $numRows = $stmt->affected_rows;
-        }
-        return $numRows;
-    }
+    // function deleteUser($usr){
+    //     $queryStr = "DELETE FROM BG_User WHERE username = ?";
+    //     $numRows = 0;
+    //     if($stmt = $this->db->prepare($queryStr)){
+    //     $stmt->bind_param("s", $usr);  
+    //     $stmt->execute();
+    //     $stmt->store_result();
+    //     $numRows = $stmt->affected_rows;
+    //     }
+    //     return $numRows;
+    // }
 
     function deleteFromLibrary($usr, $gId){
         $queryStr = "DELETE FROM Library  WHERE username = ? AND gameId = ?";
@@ -185,19 +201,24 @@ class DB{
         return $numRows;
     }
 
-    function deleteLazy($sql){
-        try{
-            //$stmt = $this->db->prepare($sql);
-            $numRows = 0;
-            $stmt->execute($sql);
-            $stmt->store_result();
-            $numRows = $stmt->affected_rows;
-            return $numRows;
-        } catch(PDOException $e){
-            echo $e->getMessage();
-            die("No delete happened");
-        }
-    }
+    // function deleteLazy($sql){
+    //     try{
+    //         //$stmt = $this->db->prepare($sql);
+    //         $numRows = 0;
+    //         $stmt->execute($sql);
+    //         $stmt->store_result();
+    //         $numRows = $stmt->affected_rows;
+    //         return $numRows;
+    //     } catch(PDOException $e){
+    //         echo $e->getMessage();
+    //         die("No delete happened");
+    //     }
+    // }
 
-}
+  } // end class
 ?>
+
+
+
+
+

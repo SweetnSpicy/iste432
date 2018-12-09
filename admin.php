@@ -14,6 +14,12 @@ elseif(isset($_SESSION['role'])){
 	}
 }
 
+if isset($_POST["usr"] && $_POST["pwd"] && $_POST["role"]){
+	//make sql statement
+	$sql = "INSERT INTO BG_User (username, password, role) VALUES (" . $_POST['usr'] . ", " . $_POST['pwd'] . ", " . $_POST['role'] . ";";
+	
+}
+
 ?>
 
 <div class="row justify-content-center align-items-center">
@@ -33,11 +39,11 @@ elseif(isset($_SESSION['role'])){
 		<h3 class="text-center">New User</h3>
             <div class="form-group">
                 <label for="email" >Username:</label><br>
-                <input type="text" name="email" id="email" class="form-control">
+                <input type="text" name="usr" id="email" class="form-control">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label><br>
-                <input type="password" name="password" id="password" class="form-control">
+                <input type="password" name="pwd" id="password" class="form-control">
             </div>
             <div class="form-group">
             	<label for="role">Role:</label><br>

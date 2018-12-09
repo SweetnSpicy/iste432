@@ -1,5 +1,5 @@
 <?php
-require_once('DBnormal.class.php');
+require_once('DB.class.php');
 session_start();
 include "assets/inc/header.php";
 include "assets/inc/nav.php";
@@ -28,27 +28,17 @@ elseif(isset($_SESSION['role'])){
 
 <form action="" method="POST">
 	<!-- form fields for doing some simple functions -->
-	<!-- new user -->
+	<!-- Get Games - call php func -->
 	<div>
-		<h3 class="text-center">New User</h3>
-            <div class="form-group">
-                <label for="email" >Username:</label><br>
-                <input type="text" name="email" id="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label><br>
-                <input type="password" name="password" id="password" class="form-control">
-            </div>
-            <div class="form-group">
-            	<label for="role">Role:</label><br>
-            	<input type="text" name="role" id="role" class="form-control">
-            <div class="form-group">
-                <input type="submit" name="" value="" class='btn btn-info btn-md text-uppercase'>
-            </div>
+		<h3 class="text-center">Get Library</h3>
+      
 	</div>
 
-	<!-- -->
-
+  <!-- Get My Ratings - call php func -->
+  <div>
+    <h3 class="text-center">Get My Ratings</h3>
+      <!-- button -->
+  </div>
 
 </form>
 

@@ -6,7 +6,7 @@
     // constructor method to connect to database
     function __construct(){
       try {
-        $this->db = new PDO("pgsql:host={$_SERVER['DB_SERVER']};dbname={$_SERVER['DB']};user={$_SERVER['DB_USER']};password={$_SERVER['DB_PASS']}");
+        $this->db = new PDO("pgsql:dbname=boardgame;user=t;password=pass;host=localhost;port=5432");
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
       catch (PDOException $e){
@@ -18,12 +18,12 @@
     //might be moved to a different class called pagestart
     public function login($email) {
       try {
-        $stmt = $this->db->prepare("SELECT email, password, role FROM users
-                                      WHERE email = :email");
+        $stmt = $this->db->prepare("SELECT username, password, role FROM bg_user
+                                      WHERE username = :email");
         $stmt->bindparam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return result;
+        return $result;
       }
       catch (PDOException $e) {
         echo "<h1>unable to log in</h1>";

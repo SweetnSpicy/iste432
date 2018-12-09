@@ -40,16 +40,16 @@ require_once('DB.class.php');
 
 
 
-		    if ($_POST['email'] == $results->email &&
+		    if ($_POST['email'] == $results->username &&
 		    $_POST['password'] == $results->password) { #password_verify($_POST['password'], $usr->VCHPASSWORD) swap this in for hashing
 		        $_SESSION['valid'] = true;
 		        $_SESSION['role'] = $results->role;
 		        echo 'You have logged in.';
-		        if($results->role == 'admin'){
+		        if($results->role == 'Admin'){
 		            header("Location: admin.php");
 		        }
-		        else if($results->role == 'user') {
-		            header("Location: index.php");
+		        else if($results->role == 'Normie') {
+		            header("Location: search.php");
 		        }
 		        else {
 		            echo "<h1>Login session error</h1>";

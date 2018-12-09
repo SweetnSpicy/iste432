@@ -6,7 +6,7 @@ class DB{
     public function __construct(){
         try{
             //open conn
-            $this->db = new PDO("pgsql:host=localhost;port=5432;dbname=testdb;user=usr;password=pwd");
+            $this->db = new PDO("pgsql:dbname=boardgame;user=t;password=pass;host=localhost;port=5432");
             //change error reporting for development
             //$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e){

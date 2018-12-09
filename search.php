@@ -5,9 +5,11 @@ require_once __DIR__.'/classes/api_grabber.php';
 $api = new ApiGrabber();
 
 $games = null;
+$gameName = "";
 
 if (isset($_GET["submit"])) {
     $games = $api->searchBoardGames($_GET["searchText"]);
+    $gameName = $_GET["searchText"];
 }
 ?>
 
@@ -19,7 +21,10 @@ if (isset($_GET["submit"])) {
                 <div class="row">
                     <div class="col-11">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="searchText" placeholder="Game name">
+                            <?php
+                                echo "<input type=\"text\" class=\"form-control\" name=\"searchText\" placeholder='Game name' value='{$gameName}'>"
+                            ?>
+
                         </div>
                     </div>
                     <div class="col-1">

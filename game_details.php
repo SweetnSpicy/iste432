@@ -21,8 +21,8 @@ $game = $api->getGameByID("131357");
                     <h1>{$game->name}</h1>
                     <h3>Players: {$game->minPlayers} - {$game->maxPlayers}</h3>
                     <h3>Ages {$game->minAge}+</h3>
-                    <h3>Playtime: {$game->minPlaytime} - {$game->maxPlaytime}</h3>
-                    <h3>Average Playtime: {$game->avgPlaytime}</h3>
+                    <h3>Playtime: {$game->minPlaytime} - {$game->maxPlaytime} Mins</h3>
+                    <h3>Average Playtime: {$game->avgPlaytime} Mins</h3>
                     <h3>Year Published: {$game->yearPublished}</h3>
                 ";
             ?>

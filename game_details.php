@@ -18,7 +18,7 @@ if (isset($_GET["gameID"])) {
     <div class="row mb-4">
         <div class="col">
             <?php
-                echo "<img src='{$game->image}' alt='{$game->name}' class='img-responsive mx-auto d-block'>";
+                echo "<img src='{$game->image}' alt='{$game->name}' class='img-fluid mx-auto d-block'>";
             ?>
         </div>
         <div class="col">

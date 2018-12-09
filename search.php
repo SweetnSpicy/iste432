@@ -40,7 +40,7 @@ if (isset($_GET["submit"])) {
                                     <h5 class='card-title'>{$game->getName()}</h5>
                                     <p>Year published: {$game->getYrPublished()}</p>
                                     <form method='get' role='form' action='game_details.php'>
-                                        <button type='submit' name='gameID' value='{$game->getID()}' class='btn btn-primary'>Game Details</button>
+                                        <button type='submit' name='gameID' value='{$game->getID()}' class='btn btn-outline-dark'>Game Details</button>
                                     </form>
                                 </div>
                             </div>

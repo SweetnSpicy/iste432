@@ -14,7 +14,7 @@ elseif(isset($_SESSION['role'])){
 	}
 }
 
-if isset($_POST["usr"] && $_POST["pwd"] && $_POST["role"]){
+if (isset($_POST["usr"]) && isset($_POST["pwd"]) && isset($_POST["role"])){
 	//make sql statement
 	$sql = "INSERT INTO BG_User (username, password, role) VALUES (" . $_POST['usr'] . ", " . $_POST['pwd'] . ", " . $_POST['role'] . ";";
 	

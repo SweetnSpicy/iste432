@@ -1,8 +1,8 @@
 <?php
 
 require __DIR__.'/../vendor/autoload.php'; //Got rid of for ApiGrabberTest
-require 'game_abbrv.php';
-require 'game.php';
+require __DIR__.'/game_abbrv.php';
+require __DIR__.'/game.php';
 
 use GuzzleHttp\Client;
 

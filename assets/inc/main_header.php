@@ -28,14 +28,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="search.php">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Library</a>
+                    <a class="nav-link" href="library.php">My Library</a>
                 </li>
             </ul>
         </div>

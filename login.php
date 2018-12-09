@@ -3,6 +3,7 @@ include "assets/inc/header.php";
 include "assets/inc/nav.php";
 include "assets/inc/container.php";
 require_once('DB.class.php');
+session_start();
 ?>
 
 <div id="login-row" class="row justify-content-center align-items-center" >

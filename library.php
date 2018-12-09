@@ -3,6 +3,11 @@
 
 include "assets/inc/main_header.php";
 require_once __DIR__.'/classes/api_grabber.php';
+session_start();
+if ($_SESSION['role'] != 'Admin' && $_SESSION['role'] != 'Normie'){
+    header("Location: login.php");
+}
+
 $api = new ApiGrabber();
 
 // TODO: Replace with actually getting a list of the user's games in their library

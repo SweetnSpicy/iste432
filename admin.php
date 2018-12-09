@@ -10,7 +10,7 @@ if(!isset($_SESSION['role'])){
 }
 elseif(isset($_SESSION['role'])){
 	if($_SESSION['role'] != 'Admin'){
-		header("Location: login.php");
+		header("Location: search.php");
 	}
 }
 

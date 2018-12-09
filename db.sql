@@ -40,6 +40,6 @@ CREATE TABLE Library(
 	PRIMARY KEY(username)
 );
 
-INSERT INTO BG_User (username, password, role) VALUES ("cxm1544","cxm1544","Admin");
-INSERT INTO BG_User (username, password, role) VALUES ("abe","abe","Normie");
-INSERT INTO BG_User (username, password, role) VALUES ("jorge","jorge","Normie");
+INSERT INTO BG_User (username, password, role) VALUES ('cxm1544','cxm1544','Admin');
+INSERT INTO BG_User (username, password, role) VALUES ('abe','abe','Normie');
+INSERT INTO BG_User (username, password, role) VALUES ('jorge','jorge','Normie');

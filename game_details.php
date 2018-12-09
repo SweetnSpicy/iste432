@@ -3,8 +3,14 @@
 include "assets/inc/main_header.php";
 require_once __DIR__.'/classes/api_grabber.php';
 $api = new ApiGrabber();
-// TODO: grab id from a post dynamically
-$game = $api->getGameByID("131357");
+
+$game = null;
+
+if (isset($_GET["gameID"])) {
+    $game = $api->getGameByID($_GET["gameID"]);
+}
+
+//$game = $api->getGameByID("131357");
 
 ?>
 
@@ -21,7 +27,7 @@ $game = $api->getGameByID("131357");
                     <h1>{$game->name}</h1>
                     <h3>Players: {$game->minPlayers} - {$game->maxPlayers}</h3>
                     <h3>Ages {$game->minAge}+</h3>
-                    <h3>Playtime: {$game->minPlaytime} - {$game->maxPlaytime} Mins</h3>
+                    <h3>Playtime: {$game->minPlaytime} - {$game->maxPlaytime}</h3>
                     <h3>Average Playtime: {$game->avgPlaytime} Mins</h3>
                     <h3>Year Published: {$game->yearPublished}</h3>
                 ";

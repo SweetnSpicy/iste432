@@ -150,12 +150,12 @@
 
     function insertUser($usr, $pwd, $role){
         try{
-            $stmt = $this->db->prepare("INSERT INTO Users (username, password, role) VALUES (:username, :password, :role)");
-            $stmt->execute(array(
+            $stmt = $this->db->prepare("INSERT INTO bg_user (username, password, role) VALUES (:username, :password, :role)");
+            return $stmt->execute(array(
                 "username" => $usr,
-                "role" => $role
+                "password" => $pwd,
+                "role" => $role,
             ));
-            return $this->db->lastInsertId();
         } catch(PDOException $e){
             echo $e->getMessage();
             die("No user inserted");

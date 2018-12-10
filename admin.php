@@ -6,7 +6,7 @@ include "assets/inc/nav.php";
 include "assets/inc/container.php";
 
 if(!isset($_SESSION['role'])){
-		header("Location: login.php");
+    header("Location: login.php");
 }
 elseif(isset($_SESSION['role'])){
 	if($_SESSION['role'] != 'Admin'){
@@ -14,9 +14,11 @@ elseif(isset($_SESSION['role'])){
 	}
 }
 
+$db = new PDO_DB();
+
 if (isset($_POST["usr"]) && isset($_POST["pwd"]) && isset($_POST["role"])){
 	//make sql statement
-	$sql = "INSERT INTO BG_User (username, password, role) VALUES (" . $_POST['usr'] . ", " . $_POST['pwd'] . ", " . $_POST['role'] . ";";
+	$db->insertUser($_POST["usr"], $_POST["pwd"], $_POST["role"]);
 	
 }
 
@@ -39,7 +41,7 @@ if (isset($_POST["usr"]) && isset($_POST["pwd"]) && isset($_POST["role"])){
 		<h3 class="text-center">New User</h3>
             <div class="form-group">
                 <label for="email" >Username:</label><br>
-                <input type="text" name="usr" id="email" class="form-control">
+                <input type="text" name="usr" id="user" class="form-control">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label><br>
@@ -47,15 +49,14 @@ if (isset($_POST["usr"]) && isset($_POST["pwd"]) && isset($_POST["role"])){
             </div>
             <div class="form-group">
             	<label for="role">Role:</label><br>
-            	<input type="text" name="role" id="role" class="form-control">
+                <select class="form-control" name="role">
+                    <option value="Normie">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
             <div class="form-group">
-                <input type="submit" name="" value="" class='btn btn-info btn-md text-uppercase'>
+                <input type="submit" name="submit" value="submit" class='btn btn-info btn-md text-uppercase mt-3'>
             </div>
 	</div>
-
-	<!-- -->
-
-
 </form>
 
 <?php

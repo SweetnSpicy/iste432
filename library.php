@@ -3,19 +3,24 @@
 
 include "assets/inc/main_header.php";
 require_once __DIR__.'/classes/api_grabber.php';
+require_once('DB.class.php');
 session_start();
 if ($_SESSION['role'] != 'Admin' && $_SESSION['role'] != 'Normie'){
     header("Location: login.php");
 }
 
 $api = new ApiGrabber();
-
-// TODO: Replace with actually getting a list of the user's games in their library
-$gameIDs = ['124742', '131357'];
+$db = new PDO_DB();
+$gameIDs = $db->getLibrary($_SESSION['username']);
 
 ?>
 
 <div class="container" style="padding-top: 85px;">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-4">My Library</h1>
+        </div>
+    </div>
 
 <?php
 foreach($gameIDs as $gameID){

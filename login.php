@@ -45,6 +45,7 @@ session_start();
 		    $_POST['password'] == $results->password) { #password_verify($_POST['password'], $usr->VCHPASSWORD) swap this in for hashing
 		        $_SESSION['valid'] = true;
 		        $_SESSION['role'] = $results->role;
+		        $_SESSION['username'] = $results->username;
 		        echo 'You have logged in.';
 		        if($results->role == 'Admin'){
 		            header("Location: admin.php");

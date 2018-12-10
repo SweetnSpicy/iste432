@@ -35,10 +35,10 @@
     function getLibrary($usr){
         try{
             $data = array();
-            $stmt = $this->db->prepare("SELECT * FROM Library WHERE username = :usr");
+            $stmt = $this->db->prepare("SELECT gameid FROM Library WHERE username = :usr");
             $stmt->execute(array("usr"=>$usr));
             while ($lib = $stmt->fetch()){
-                $data[] = $lib;
+                $data[] = $lib['gameid'];
             }
             return $data;
         } catch(PDOException $e){

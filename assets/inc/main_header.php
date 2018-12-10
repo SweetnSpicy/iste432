@@ -20,7 +20,6 @@
 </head>
 
 <body>
-<!-- TODO: fix the nav to include the logout button -->
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,5 +35,8 @@
                 </li>
             </ul>
         </div>
+        <form method='post' role='form' action='login.php'>
+            <button type='submit' name='logout' value="done" class='btn btn-outline-light'>Logout</button>
+        </form>
     </nav>
 </header>

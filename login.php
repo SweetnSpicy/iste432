@@ -60,12 +60,12 @@ session_start();
 		}
 
 
-		    if (!empty($_POST['logout'])){
-		        $_SESSION['valid'] = false;
-		        $_SESSION['role'] = '';
-		        session_destroy();
-		        echo 'You have logged out.';
-		    }
+        if (!empty($_POST['logout'])){
+            $_SESSION['valid'] = false;
+            $_SESSION['role'] = '';
+            session_destroy();
+            header("Location: login.php");
+        }
 		?>
 <?php
 include "assets/inc/end-container.php";

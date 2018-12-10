@@ -9,6 +9,10 @@ if(!isset($_SESSION['role'])){
     header("Location: login.php");
 }
 
+if (isset($_SESSION['valid'])){
+    header("Location: search.php");
+}
+
 ?>
 <div class="row justify-content-center align-items-center">
   <div class="col-lg-4">

@@ -16,6 +16,7 @@
     } // end constructor
 
     //might be moved to a different class called pagestart
+      //TODO: check for the fucking password
     public function login($email) {
       try {
         $stmt = $this->db->prepare("SELECT username, password, role FROM bg_user
@@ -41,6 +42,21 @@
                 $data[] = $lib['gameid'];
             }
             return $data;
+        } catch(PDOException $e){
+            echo $e->getMessage();
+            die("No games returned");
+        }
+    }
+
+    function getInUsersLibrary($usr, $gid){
+        try{
+            $data = array();
+            $stmt = $this->db->prepare("SELECT gameid FROM Library WHERE username = :usr AND gameid = :gid");
+            $stmt->bindparam(':usr', $usr);
+            $stmt->bindparam(':gid', $gid);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
+            return $result;
         } catch(PDOException $e){
             echo $e->getMessage();
             die("No games returned");
@@ -146,6 +162,20 @@
         }
     }
 
+    function insertGameIntoLibrary($usr, $gid){
+        try{
+            $stmt = $this->db->prepare("INSERT INTO Library (username, gameid) VALUES (:usr, :gid)");
+            $stmt->execute([
+                'usr' => $usr,
+                'gid' => $gid,
+            ]);
+            return true;
+        } catch(PDOException $e){
+            echo $e->getMessage();
+            die("No user inserted");
+        }
+    }
+
     function insertRating($gId, $title, $rating, $review){
         try{
             //connect the username to the gameId with ratings_user
@@ -189,16 +219,16 @@
         return $numRows;
     }
 
-    function deleteFromLibrary($usr, $gId){
-        $queryStr = "DELETE FROM Library  WHERE username = ? AND gameId = ?";
-        $numRows = 0;
-        if($stmt = $this->db->prepare($queryStr)){
-        $stmt->bind_param("ss", $usr, $gId);  
-        $stmt->execute();
-        $stmt->store_result();
-        $numRows = $stmt->affected_rows;
+    function deleteFromLibrary($usr, $gid){
+        try{
+            $stmt = $this->db->prepare("DELETE FROM Library WHERE username = :usr AND gameid = :gid");
+            $stmt->bindparam(':usr', $usr);
+            $stmt->bindparam(':gid', $gid);
+            return $stmt->execute();
+        } catch(PDOException $e){
+            echo $e->getMessage();
+            die("No user inserted");
         }
-        return $numRows;
     }
 
     function deleteLazy($sql){

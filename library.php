@@ -11,6 +11,10 @@ if ($_SESSION['role'] != 'Admin' && $_SESSION['role'] != 'Normie'){
 
 $api = new ApiGrabber();
 $db = new PDO_DB();
+
+if (isset($_POST['removeGame'])){
+    $db->deleteFromLibrary($_SESSION['username'], $_POST['removeGame']);
+}
 $gameIDs = $db->getLibrary($_SESSION['username']);
 
 ?>
@@ -30,14 +34,25 @@ foreach($gameIDs as $gameID){
                     <div class='col'>
                         <div class='card mb-3'>
                             <div class='card-body'>
-                                <div>
-                                    <h5 class='card-title'>{$game->name}</h5>
-                                    <p>Players: {$game->minPlayers} - {$game->maxPlayers}</p>
-                                    <p>Ages {$game->minAge}+</p>
-                                    <p>Average Playtime: {$game->avgPlaytime} Mins</p>
-                                    <form method='get' role='form' action='game_details.php'>
-                                        <button type='submit' name='gameID' value='{$gameID}' class='btn btn-outline-dark'>Game Details</button>
-                                    </form>
+                                <div class='row'>
+                                    <div class='col'>
+                                        <h5 class='card-title'>{$game->name}</h5>
+                                        <p>Players: {$game->minPlayers} - {$game->maxPlayers}</p>
+                                        <p>Ages {$game->minAge}+</p>
+                                        <p>Average Playtime: {$game->avgPlaytime} Mins</p>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='col'>
+                                        <form method='get' role='form' action='game_details.php'>
+                                            <button type='submit' name='gameID' value='{$gameID}' class='btn btn-outline-dark'>Game Details</button>
+                                        </form>
+                                     </div>
+                                     <div class='col'>
+                                        <form method='post' role='form' action='library.php' class='float-right'>
+                                            <button type='submit' name='removeGame' value='{$gameID}' class='btn btn-danger'>Remove from Library</button>
+                                        </form>
+                                     </div>
                                 </div>
                             </div>
                         </div>

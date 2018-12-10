@@ -21,7 +21,7 @@ CREATE TABLE Ratings_User(
 	gameId INT,
 	username VARCHAR(15) NOT NULL,
 	PRIMARY KEY(gameId),
-	FOREIGN  KEY (username) REFERENCES boardgame_user (username)
+	FOREIGN  KEY (username) REFERENCES bg_user(username)
 );
 
 DROP TABLE IF EXISTS Ratings;
@@ -37,9 +37,14 @@ DROP TABLE IF EXISTS Library;
 CREATE TABLE Library(
 	username VARCHAR(15) NOT NULL,
 	gameId INT NOT NULL,
-	PRIMARY KEY(username)
+	PRIMARY KEY(username, gameid),
+        FOREIGN KEY (username) REFERENCES bg_user(username)
 );
 
 INSERT INTO BG_User (username, password, role) VALUES ('cxm1544','cxm1544','Admin');
 INSERT INTO BG_User (username, password, role) VALUES ('abe','abe','Normie');
 INSERT INTO BG_User (username, password, role) VALUES ('jorge','jorge','Normie');
+
+INSERT INTO library (username, gameid) VALUES ('jorge', '124742');
+INSERT INTO library (username, gameid) VALUES ('jorge', '131357');
+
